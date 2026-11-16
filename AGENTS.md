@@ -28,3 +28,9 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+
+- Habit data (habits, habit_entries) is read and written from the browser with the generated Supabase client under RLS, cached via React Query keys `["habits"]` and `["entries"]`; signed-in pages live under `src/routes/_authenticated/` (client-only). Why: personal data only, no server-side secrets needed.
+- Streak, goal-met and long-term pacing rules live as pure functions in `src/lib/habits.ts` with tests in `src/lib/habits.test.ts`. Why: keeps the rules testable and shared by all screens.
+- Habit accent colors are chosen with `data-habit="<name>"`, which sets `--habit` (utilities `bg-habit`, `text-habit`, `stroke-habit`). Why: per-item colors without hardcoded color classes.
