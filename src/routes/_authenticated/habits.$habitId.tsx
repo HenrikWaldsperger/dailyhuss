@@ -37,9 +37,9 @@ import { entriesQueryOptions, habitsQueryOptions, useDeleteHabit } from "@/lib/h
 export const Route = createFileRoute("/_authenticated/habits/$habitId")({
   head: () => ({
     meta: [
-      { title: "Verlauf – Tagwerk" },
+      { title: "Verlauf – DailyHuss" },
       { name: "description", content: "Verlauf, Serien und Statistiken deiner Gewohnheit." },
-      { property: "og:title", content: "Verlauf – Tagwerk" },
+      { property: "og:title", content: "Verlauf – DailyHuss" },
       { property: "og:description", content: "Verlauf, Serien und Statistiken deiner Gewohnheit." },
     ],
   }),

@@ -13,9 +13,9 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
-      { title: "Anmelden – Tagwerk" },
+      { title: "Anmelden – DailyHuss" },
       { name: "description", content: "Melde dich an, um deine Gewohnheiten und Ziele zu tracken." },
-      { property: "og:title", content: "Anmelden – Tagwerk" },
+      { property: "og:title", content: "Anmelden – DailyHuss" },
       { property: "og:description", content: "Melde dich an, um deine Gewohnheiten und Ziele zu tracken." },
     ],
   }),
@@ -109,7 +109,7 @@ function AuthPage() {
     <div className="flex min-h-screen items-center justify-center px-4 py-12">
       <div className="w-full max-w-md">
         <Link to="/" className="mb-8 block text-center font-display text-3xl font-extrabold">
-          Tagwerk<span className="text-accent">.</span>
+          DailyHuss<span className="text-accent">.</span>
         </Link>
         <div className="paper p-7 sm:p-8">
           <h1 className="text-2xl font-bold">{title}</h1>

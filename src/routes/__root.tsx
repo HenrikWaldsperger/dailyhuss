@@ -82,9 +82,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Tagwerk – Gewohnheiten & Ziele tracken" },
+      { title: "DailyHuss – Gewohnheiten & Ziele tracken" },
       { name: "description", content: "Tracke Wasser, Bildschirmzeit, Lernen und langfristige Ziele – Tag für Tag." },
-      { property: "og:title", content: "Tagwerk – Gewohnheiten & Ziele tracken" },
+      { property: "og:title", content: "DailyHuss – Gewohnheiten & Ziele tracken" },
       { property: "og:description", content: "Tracke Wasser, Bildschirmzeit, Lernen und langfristige Ziele – Tag für Tag." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

@@ -9,10 +9,10 @@ import { Label } from "@/components/ui/label";
 export const Route = createFileRoute("/reset-password")({
   head: () => ({
     meta: [
-      { title: "Neues Passwort – Tagwerk" },
-      { name: "description", content: "Lege ein neues Passwort für dein Tagwerk-Konto fest." },
-      { property: "og:title", content: "Neues Passwort – Tagwerk" },
-      { property: "og:description", content: "Lege ein neues Passwort für dein Tagwerk-Konto fest." },
+      { title: "Neues Passwort – DailyHuss" },
+      { name: "description", content: "Lege ein neues Passwort für dein DailyHuss-Konto fest." },
+      { property: "og:title", content: "Neues Passwort – DailyHuss" },
+      { property: "og:description", content: "Lege ein neues Passwort für dein DailyHuss-Konto fest." },
     ],
   }),
   component: ResetPasswordPage,

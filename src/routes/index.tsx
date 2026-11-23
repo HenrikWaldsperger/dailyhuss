@@ -8,12 +8,12 @@ import heroImage from "@/assets/hero-still-life.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Tagwerk – Gewohnheiten & Ziele einfach tracken" },
+      { title: "DailyHuss – Gewohnheiten & Ziele einfach tracken" },
       {
         name: "description",
-        content: "Wasser trinken, weniger Bildschirmzeit, mehr lernen: Tagwerk hilft dir, tägliche Gewohnheiten und langfristige Ziele im Blick zu behalten.",
+        content: "Wasser trinken, weniger Bildschirmzeit, mehr lernen: DailyHuss hilft dir, tägliche Gewohnheiten und langfristige Ziele im Blick zu behalten.",
       },
-      { property: "og:title", content: "Tagwerk – Gewohnheiten & Ziele einfach tracken" },
+      { property: "og:title", content: "DailyHuss – Gewohnheiten & Ziele einfach tracken" },
       {
         property: "og:description",
         content: "Wasser trinken, weniger Bildschirmzeit, mehr lernen – Tag für Tag sichtbar besser werden.",
@@ -41,7 +41,7 @@ function Index() {
     <div className="min-h-screen">
       <header className="mx-auto flex h-20 max-w-6xl items-center justify-between px-4 sm:px-6">
         <span className="font-display text-2xl font-extrabold">
-          Tagwerk<span className="text-accent">.</span>
+          DailyHuss<span className="text-accent">.</span>
         </span>
         <Button asChild variant="ghost">
           {signedIn ? <Link to="/heute">Zu meinem Tag</Link> : <Link to="/auth">Anmelden</Link>}

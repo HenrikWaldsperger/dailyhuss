@@ -13,9 +13,9 @@ import { entriesQueryOptions, habitsQueryOptions } from "@/lib/habits-queries";
 export const Route = createFileRoute("/_authenticated/heute")({
   head: () => ({
     meta: [
-      { title: "Heute – Tagwerk" },
+      { title: "Heute – DailyHuss" },
       { name: "description", content: "Deine Gewohnheiten und Ziele für heute auf einen Blick." },
-      { property: "og:title", content: "Heute – Tagwerk" },
+      { property: "og:title", content: "Heute – DailyHuss" },
       { property: "og:description", content: "Deine Gewohnheiten und Ziele für heute auf einen Blick." },
     ],
   }),
