@@ -189,6 +189,7 @@ export const HABIT_TEMPLATES: HabitTemplate[] = [
   { name: "Social Media", emoji: "📱", color: "coral", unit: "Min", target: 60, step: 15, direction: "at_most", period: "daily" },
   { name: "Lernen", emoji: "📚", color: "sun", unit: "Min", target: 30, step: 15, direction: "at_least", period: "daily" },
   { name: "Schritte", emoji: "🚶", color: "moss", unit: "Schritte", target: 8000, step: 1000, direction: "at_least", period: "daily" },
+  { name: "Sport", emoji: "🏋️", color: "coral", unit: "Min", target: 20, step: 5, direction: "at_least", period: "daily" },
   { name: "Meditieren", emoji: "🧘", color: "sky", unit: "Min", target: 10, step: 5, direction: "at_least", period: "daily" },
   { name: "Buch zu Ende lesen", emoji: "📖", color: "clay", unit: "Seiten", target: 300, step: 10, direction: "at_least", period: "total" },
   { name: "100 Stunden Sprache lernen", emoji: "🗣️", color: "sun", unit: "Std", target: 100, step: 0.5, direction: "at_least", period: "total" },

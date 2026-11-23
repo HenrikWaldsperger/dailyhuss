@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { HabitFormDialog } from "@/components/habits/HabitFormDialog";
+import { CoachTipsCard } from "@/components/coach/CoachTipsCard";
 import {
   bestStreak,
   currentStreak,
@@ -148,6 +149,7 @@ function HabitDetail() {
       ) : (
         <TotalStats habit={habit} values={values} today={today} />
       )}
+      <CoachTipsCard habit={habit} />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { bestStreak, currentStreak, isDayMet, successRate, totalProgress, type DayValues } from "./habits";
+import { topicForHabit } from "./coach-tips";
 
 const today = new Date(2026, 10, 16); // 16 Nov 2026
 const water = { direction: "at_least" as const, target: 8, created_at: "2026-11-01T08:00:00" };
@@ -44,5 +45,13 @@ describe("habit rules", () => {
     expect(p.daysLeft).toBe(10);
     expect(p.perDayNeeded).toBe(15);
     expect(p.done).toBe(false);
+  });
+});
+
+describe("coach topics", () => {
+  it("matches a habit to its coach topic by name", () => {
+    expect(topicForHabit({ name: "Wasser trinken", unit: "Gläser" }).key).toBe("water");
+    expect(topicForHabit({ name: "Liegestütze", unit: "mal" }).key).toBe("sport");
+    expect(topicForHabit({ name: "Gitarre", unit: "Min" }).key).toBe("general");
   });
 });

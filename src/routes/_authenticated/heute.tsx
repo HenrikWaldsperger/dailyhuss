@@ -7,6 +7,7 @@ import { ChevronLeft, ChevronRight, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { HabitCard, GoalCard } from "@/components/habits/HabitCard";
 import { HabitFormDialog } from "@/components/habits/HabitFormDialog";
+import { TodayBoost } from "@/components/rewards/TodayBoost";
 import { dayKey, groupEntries, isDayMet, parseDay } from "@/lib/habits";
 import { entriesQueryOptions, habitsQueryOptions } from "@/lib/habits-queries";
 
@@ -104,6 +105,8 @@ function TodayPage() {
           />
         </div>
       </section>
+
+      <TodayBoost habits={habits} today={today} />
 
       {habits.length === 0 && (
         <div className="paper flex flex-col items-center gap-4 px-6 py-16 text-center">

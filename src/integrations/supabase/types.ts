@@ -14,6 +14,30 @@ export type Database = {
   }
   public: {
     Tables: {
+      coach_messages: {
+        Row: {
+          created_at: string
+          id: string
+          parts: Json
+          role: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          parts?: Json
+          role: string
+          user_id?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          parts?: Json
+          role?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       habit_entries: {
         Row: {
           created_at: string
@@ -99,6 +123,27 @@ export type Database = {
           target?: number
           unit?: string
           updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      reward_unlocks: {
+        Row: {
+          id: string
+          reward_key: string
+          unlocked_at: string
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          reward_key: string
+          unlocked_at?: string
+          user_id?: string
+        }
+        Update: {
+          id?: string
+          reward_key?: string
+          unlocked_at?: string
           user_id?: string
         }
         Relationships: []

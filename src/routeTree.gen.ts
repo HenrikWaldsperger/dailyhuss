@@ -13,7 +13,10 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as AuthenticatedCoachRouteImport } from './routes/_authenticated/coach'
+import { Route as AuthenticatedErfolgeRouteImport } from './routes/_authenticated/erfolge'
 import { Route as AuthenticatedHeuteRouteImport } from './routes/_authenticated/heute'
+import { Route as ApiCoachRouteImport } from './routes/api/coach'
 import { Route as AuthenticatedHabitsHabitIdRouteImport } from './routes/_authenticated/habits.$habitId'
 
 const IndexRoute = IndexRouteImport.update({
@@ -35,10 +38,25 @@ const ResetPasswordRoute = ResetPasswordRouteImport.update({
   path: '/reset-password',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedCoachRoute = AuthenticatedCoachRouteImport.update({
+  id: '/coach',
+  path: '/coach',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedErfolgeRoute = AuthenticatedErfolgeRouteImport.update({
+  id: '/erfolge',
+  path: '/erfolge',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedHeuteRoute = AuthenticatedHeuteRouteImport.update({
   id: '/heute',
   path: '/heute',
   getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const ApiCoachRoute = ApiCoachRouteImport.update({
+  id: '/api/coach',
+  path: '/api/coach',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedHabitsHabitIdRoute =
   AuthenticatedHabitsHabitIdRouteImport.update({
@@ -51,14 +69,20 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/coach': typeof AuthenticatedCoachRoute
+  '/erfolge': typeof AuthenticatedErfolgeRoute
   '/heute': typeof AuthenticatedHeuteRoute
+  '/api/coach': typeof ApiCoachRoute
   '/habits/$habitId': typeof AuthenticatedHabitsHabitIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/coach': typeof AuthenticatedCoachRoute
+  '/erfolge': typeof AuthenticatedErfolgeRoute
   '/heute': typeof AuthenticatedHeuteRoute
+  '/api/coach': typeof ApiCoachRoute
   '/habits/$habitId': typeof AuthenticatedHabitsHabitIdRoute
 }
 export interface FileRoutesById {
@@ -67,21 +91,43 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/_authenticated/coach': typeof AuthenticatedCoachRoute
+  '/_authenticated/erfolge': typeof AuthenticatedErfolgeRoute
   '/_authenticated/heute': typeof AuthenticatedHeuteRoute
+  '/api/coach': typeof ApiCoachRoute
   '/_authenticated/habits/$habitId': typeof AuthenticatedHabitsHabitIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/reset-password' | '/heute' | '/habits/$habitId'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/reset-password'
+    | '/coach'
+    | '/erfolge'
+    | '/heute'
+    | '/api/coach'
+    | '/habits/$habitId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/reset-password' | '/heute' | '/habits/$habitId'
+  to:
+    | '/'
+    | '/auth'
+    | '/reset-password'
+    | '/coach'
+    | '/erfolge'
+    | '/heute'
+    | '/api/coach'
+    | '/habits/$habitId'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/auth'
     | '/reset-password'
+    | '/_authenticated/coach'
+    | '/_authenticated/erfolge'
     | '/_authenticated/heute'
+    | '/api/coach'
     | '/_authenticated/habits/$habitId'
   fileRoutesById: FileRoutesById
 }
@@ -90,6 +136,7 @@ export interface RootRouteChildren {
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AuthRoute: typeof AuthRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
+  ApiCoachRoute: typeof ApiCoachRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -122,12 +169,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/coach': {
+      id: '/_authenticated/coach'
+      path: '/coach'
+      fullPath: '/coach'
+      preLoaderRoute: typeof AuthenticatedCoachRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/erfolge': {
+      id: '/_authenticated/erfolge'
+      path: '/erfolge'
+      fullPath: '/erfolge'
+      preLoaderRoute: typeof AuthenticatedErfolgeRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/heute': {
       id: '/_authenticated/heute'
       path: '/heute'
       fullPath: '/heute'
       preLoaderRoute: typeof AuthenticatedHeuteRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/api/coach': {
+      id: '/api/coach'
+      path: '/api/coach'
+      fullPath: '/api/coach'
+      preLoaderRoute: typeof ApiCoachRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/_authenticated/habits/$habitId': {
       id: '/_authenticated/habits/$habitId'
@@ -140,11 +208,15 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedCoachRoute: typeof AuthenticatedCoachRoute
+  AuthenticatedErfolgeRoute: typeof AuthenticatedErfolgeRoute
   AuthenticatedHeuteRoute: typeof AuthenticatedHeuteRoute
   AuthenticatedHabitsHabitIdRoute: typeof AuthenticatedHabitsHabitIdRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedCoachRoute: AuthenticatedCoachRoute,
+  AuthenticatedErfolgeRoute: AuthenticatedErfolgeRoute,
   AuthenticatedHeuteRoute: AuthenticatedHeuteRoute,
   AuthenticatedHabitsHabitIdRoute: AuthenticatedHabitsHabitIdRoute,
 }
@@ -157,6 +229,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AuthRoute: AuthRoute,
   ResetPasswordRoute: ResetPasswordRoute,
+  ApiCoachRoute: ApiCoachRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
