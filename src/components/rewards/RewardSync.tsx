@@ -4,6 +4,7 @@ import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { describeReward, earnedRewardKeys } from "@/lib/levels";
+import { coinsForReward } from "@/lib/village";
 import { rewardsQueryOptions, saveUnlocks, useProgress } from "@/lib/rewards-queries";
 
 /** Hands out newly earned rewards (saved to the account) and celebrates them once. */
@@ -23,7 +24,7 @@ export function RewardSync() {
     saveUnlocks(missing)
       .then((added) => {
         if (added.length > 0) setFresh((prev) => [...prev, ...added]);
-        return qc.invalidateQueries({ queryKey: ["rewards"] });
+        return Promise.all([qc.invalidateQueries({ queryKey: ["rewards"] }), qc.invalidateQueries({ queryKey: ["coins"] })]);
       })
       .catch((e) => console.error("Belohnungen konnten nicht gespeichert werden", e))
       .finally(() => {
@@ -36,6 +37,7 @@ export function RewardSync() {
   const levels = items.filter((x) => x.key.startsWith("level:"));
   const topLevel = levels[levels.length - 1];
   const shown = [...(topLevel ? [topLevel] : []), ...items.filter((x) => x.key.startsWith("badge:"))];
+  const totalCoins = fresh.reduce((sum, k) => sum + coinsForReward(k), 0);
 
   return (
     <Dialog open={shown.length > 0} onOpenChange={(o) => !o && setFresh([])}>
@@ -47,7 +49,12 @@ export function RewardSync() {
           <DialogTitle className="font-display text-3xl font-extrabold">
             {shown.length > 1 ? "Neue Belohnungen!" : "Neue Belohnung!"}
           </DialogTitle>
-          <DialogDescription>Stark drangeblieben – das hast du dir verdient.</DialogDescription>
+          <DialogDescription>
+            Stark drangeblieben – das hast du dir verdient.
+            {totalCoins > 0 && (
+              <span className="mt-2 block font-display text-xl font-bold text-foreground">+{totalCoins} Taler 🪙</span>
+            )}
+          </DialogDescription>
         </DialogHeader>
         <ul className="max-h-72 space-y-2 overflow-y-auto text-left">
           {shown.map(({ key, info }) => (
@@ -62,7 +69,7 @@ export function RewardSync() {
         </ul>
         <div className="flex justify-center gap-2 pt-2">
           <Button variant="outline" asChild onClick={() => setFresh([])}>
-            <Link to="/erfolge">Alle Erfolge</Link>
+            <Link to="/dorf">Ins Dorf</Link>
           </Button>
           <Button variant="hero" onClick={() => setFresh([])}>
             Weiter geht's

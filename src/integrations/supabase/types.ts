@@ -38,6 +38,59 @@ export type Database = {
         }
         Relationships: []
       }
+      coin_transactions: {
+        Row: {
+          amount: number
+          created_at: string
+          id: string
+          reason: string
+          user_id: string
+        }
+        Insert: {
+          amount: number
+          created_at?: string
+          id?: string
+          reason: string
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          id?: string
+          reason?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      design_unlocks: {
+        Row: {
+          created_at: string
+          id: string
+          kind: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          kind: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          kind?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "design_unlocks_kind_fkey"
+            columns: ["kind"]
+            isOneToOne: false
+            referencedRelation: "village_catalog"
+            referencedColumns: ["kind"]
+          },
+        ]
+      }
       habit_entries: {
         Row: {
           created_at: string
@@ -148,12 +201,113 @@ export type Database = {
         }
         Relationships: []
       }
+      village_catalog: {
+        Row: {
+          category: string
+          kind: string
+          price: number
+          sort: number
+        }
+        Insert: {
+          category: string
+          kind: string
+          price: number
+          sort?: number
+        }
+        Update: {
+          category?: string
+          kind?: string
+          price?: number
+          sort?: number
+        }
+        Relationships: []
+      }
+      village_designs: {
+        Row: {
+          created_at: string
+          design: Json
+          id: string
+          name: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          design?: Json
+          id?: string
+          name: string
+          user_id?: string
+        }
+        Update: {
+          created_at?: string
+          design?: Json
+          id?: string
+          name?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      village_items: {
+        Row: {
+          created_at: string
+          decorations: string[]
+          design: Json
+          id: string
+          kind: string
+          user_id: string
+          x: number
+          y: number
+        }
+        Insert: {
+          created_at?: string
+          decorations?: string[]
+          design?: Json
+          id?: string
+          kind: string
+          user_id?: string
+          x: number
+          y: number
+        }
+        Update: {
+          created_at?: string
+          decorations?: string[]
+          design?: Json
+          id?: string
+          kind?: string
+          user_id?: string
+          x?: number
+          y?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "village_items_kind_fkey"
+            columns: ["kind"]
+            isOneToOne: false
+            referencedRelation: "village_catalog"
+            referencedColumns: ["kind"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      coin_balance: { Args: never; Returns: number }
+      coin_value: { Args: { _key: string }; Returns: number }
+      village_buy: {
+        Args: { _design?: Json; _kind: string; _x: number; _y: number }
+        Returns: string
+      }
+      village_decorate: {
+        Args: { _decoration: string; _item: string }
+        Returns: undefined
+      }
+      village_remove_decoration: {
+        Args: { _decoration: string; _item: string }
+        Returns: undefined
+      }
+      village_sell: { Args: { _item: string }; Returns: number }
+      village_unlock_design: { Args: { _kind: string }; Returns: undefined }
     }
     Enums: {
       [_ in never]: never

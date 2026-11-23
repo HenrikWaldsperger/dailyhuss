@@ -14,6 +14,7 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as AuthenticatedCoachRouteImport } from './routes/_authenticated/coach'
+import { Route as AuthenticatedDorfRouteImport } from './routes/_authenticated/dorf'
 import { Route as AuthenticatedErfolgeRouteImport } from './routes/_authenticated/erfolge'
 import { Route as AuthenticatedHeuteRouteImport } from './routes/_authenticated/heute'
 import { Route as ApiCoachRouteImport } from './routes/api/coach'
@@ -43,6 +44,11 @@ const AuthenticatedCoachRoute = AuthenticatedCoachRouteImport.update({
   path: '/coach',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedDorfRoute = AuthenticatedDorfRouteImport.update({
+  id: '/dorf',
+  path: '/dorf',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedErfolgeRoute = AuthenticatedErfolgeRouteImport.update({
   id: '/erfolge',
   path: '/erfolge',
@@ -70,6 +76,7 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
   '/coach': typeof AuthenticatedCoachRoute
+  '/dorf': typeof AuthenticatedDorfRoute
   '/erfolge': typeof AuthenticatedErfolgeRoute
   '/heute': typeof AuthenticatedHeuteRoute
   '/api/coach': typeof ApiCoachRoute
@@ -80,6 +87,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
   '/coach': typeof AuthenticatedCoachRoute
+  '/dorf': typeof AuthenticatedDorfRoute
   '/erfolge': typeof AuthenticatedErfolgeRoute
   '/heute': typeof AuthenticatedHeuteRoute
   '/api/coach': typeof ApiCoachRoute
@@ -92,6 +100,7 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
   '/_authenticated/coach': typeof AuthenticatedCoachRoute
+  '/_authenticated/dorf': typeof AuthenticatedDorfRoute
   '/_authenticated/erfolge': typeof AuthenticatedErfolgeRoute
   '/_authenticated/heute': typeof AuthenticatedHeuteRoute
   '/api/coach': typeof ApiCoachRoute
@@ -104,6 +113,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/reset-password'
     | '/coach'
+    | '/dorf'
     | '/erfolge'
     | '/heute'
     | '/api/coach'
@@ -114,6 +124,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/reset-password'
     | '/coach'
+    | '/dorf'
     | '/erfolge'
     | '/heute'
     | '/api/coach'
@@ -125,6 +136,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/reset-password'
     | '/_authenticated/coach'
+    | '/_authenticated/dorf'
     | '/_authenticated/erfolge'
     | '/_authenticated/heute'
     | '/api/coach'
@@ -176,6 +188,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedCoachRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/dorf': {
+      id: '/_authenticated/dorf'
+      path: '/dorf'
+      fullPath: '/dorf'
+      preLoaderRoute: typeof AuthenticatedDorfRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/erfolge': {
       id: '/_authenticated/erfolge'
       path: '/erfolge'
@@ -209,6 +228,7 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedCoachRoute: typeof AuthenticatedCoachRoute
+  AuthenticatedDorfRoute: typeof AuthenticatedDorfRoute
   AuthenticatedErfolgeRoute: typeof AuthenticatedErfolgeRoute
   AuthenticatedHeuteRoute: typeof AuthenticatedHeuteRoute
   AuthenticatedHabitsHabitIdRoute: typeof AuthenticatedHabitsHabitIdRoute
@@ -216,6 +236,7 @@ interface AuthenticatedRouteRouteChildren {
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedCoachRoute: AuthenticatedCoachRoute,
+  AuthenticatedDorfRoute: AuthenticatedDorfRoute,
   AuthenticatedErfolgeRoute: AuthenticatedErfolgeRoute,
   AuthenticatedHeuteRoute: AuthenticatedHeuteRoute,
   AuthenticatedHabitsHabitIdRoute: AuthenticatedHabitsHabitIdRoute,

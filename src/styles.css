@@ -113,6 +113,31 @@
   --shadow-paper-value: 0 1px 0 oklch(0.85 0.03 82), 0 8px 24px -16px oklch(0.4 0.05 230 / 0.35);
   --shadow-lift-value: 0 2px 0 oklch(0.82 0.035 82), 0 18px 40px -20px oklch(0.4 0.05 230 / 0.45);
 
+  /* Village paints (house designs) and scenery */
+  --paint-cream: oklch(0.95 0.03 85);
+  --paint-white: oklch(0.985 0.006 90);
+  --paint-sand: oklch(0.84 0.07 80);
+  --paint-terracotta: oklch(0.63 0.13 40);
+  --paint-brick: oklch(0.5 0.13 30);
+  --paint-moss: oklch(0.6 0.09 140);
+  --paint-sky: oklch(0.72 0.09 235);
+  --paint-slate: oklch(0.45 0.03 240);
+  --paint-lavender: oklch(0.73 0.1 300);
+  --paint-mint: oklch(0.86 0.08 165);
+  --paint-rose: oklch(0.78 0.11 0);
+  --paint-midnight: oklch(0.32 0.07 265);
+  --paint-gold: oklch(0.8 0.15 85);
+  --grass: oklch(0.82 0.09 132);
+  --grass-dark: oklch(0.74 0.1 136);
+  --path: oklch(0.9 0.04 82);
+  --wood: oklch(0.55 0.08 55);
+  --leaf: oklch(0.62 0.13 145);
+  --leaf-dark: oklch(0.5 0.12 152);
+  --water: oklch(0.74 0.09 225);
+  --stone: oklch(0.74 0.02 80);
+  --glass: oklch(0.88 0.05 220);
+  --glow: oklch(0.9 0.14 95);
+
   --chart-1: var(--habit-lagoon);
   --chart-2: var(--habit-coral);
   --chart-3: var(--habit-sun);
@@ -173,4 +198,21 @@
 
 @utility animate-pop {
   animation: pop 0.35s ease-out;
+}
+
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+
+@utility animate-spin-slow {
+  animation: spin-slow 9s linear infinite;
+}
+
+@keyframes drift {
+  0% { transform: translateY(0); opacity: 0.7; }
+  100% { transform: translateY(-10px); opacity: 0; }
+}
+
+@utility animate-drift {
+  animation: drift 2.4s ease-out infinite;
 }

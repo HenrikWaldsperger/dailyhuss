@@ -15,6 +15,27 @@
       "when": 1795432019297,
       "tag": "0001_coach_and_rewards",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1795432968372,
+      "tag": "0002_coins_and_village",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1795433000366,
+      "tag": "0003_design_unlocks",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1795433347211,
+      "tag": "0004_tighten_village_privileges",
+      "breakpoints": true
     }
   ]
 }
